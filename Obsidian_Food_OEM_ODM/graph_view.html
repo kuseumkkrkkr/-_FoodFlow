@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>식품 OEM/ODM 아이디어 그래프</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, "Malgun Gothic", sans-serif;
+      background: #f7f8fb;
+      color: #1f2937;
+    }
+    header {
+      padding: 18px 24px;
+      background: #ffffff;
+      border-bottom: 1px solid #d9dee8;
+    }
+    h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .wrap {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      height: calc(100vh - 58px);
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+      background: #fbfcfe;
+    }
+    aside {
+      padding: 18px;
+      background: #ffffff;
+      border-left: 1px solid #d9dee8;
+      overflow: auto;
+    }
+    .node circle {
+      stroke: #243447;
+      stroke-width: 1.4px;
+    }
+    .node text {
+      font-size: 12px;
+      pointer-events: none;
+    }
+    .link {
+      stroke: #9aa7b8;
+      stroke-opacity: 0.8;
+      stroke-width: 1.4px;
+    }
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    @media (max-width: 900px) {
+      .wrap {
+        grid-template-columns: 1fr;
+      }
+      aside {
+        border-left: 0;
+        border-top: 1px solid #d9dee8;
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>식품 OEM/ODM 공장 매칭 플랫폼 - 트렌드 그래프</h1>
+  </header>
+  <div class="wrap">
+    <svg id="graph" role="img" aria-label="아이디어와 트렌드 연결 그래프"></svg>
+    <aside>
+      <h2>읽는 순서</h2>
+      <p>가운데 아이디어에서 B2B/B2C 서비스, 공장 데이터, AI 매칭 로직으로 갈라지고, 바깥쪽 글로벌 트렌드와 한국 트렌드가 각각 어떤 기능을 밀어주는지 보여준다.</p>
+      <div class="legend"><span class="swatch" style="background:#2563eb"></span>핵심 아이디어</div>
+      <div class="legend"><span class="swatch" style="background:#16a34a"></span>플랫폼 기능</div>
+      <div class="legend"><span class="swatch" style="background:#f59e0b"></span>글로벌 트렌드</div>
+      <div class="legend"><span class="swatch" style="background:#dc2626"></span>한국 트렌드</div>
+      <h2>다음 작업</h2>
+      <p>Obsidian에서 이 폴더를 vault로 열고 Graph view를 켜면 같은 연결망을 노트 단위로 볼 수 있다.</p>
+    </aside>
+  </div>
+  <script>
+    const nodes = [
+      { id: "AI 기반 식품 OEM/ODM 공장 매칭 플랫폼", group: "idea" },
+      { id: "B2B 대량 발주", group: "platform" },
+      { id: "B2C 소규모 제작/공동구매", group: "platform" },
+      { id: "공장 역량 데이터베이스", group: "platform" },
+      { id: "AI 매칭 로직", group: "platform" },
+      { id: "견적/샘플 발주", group: "platform" },
+      { id: "기능성·개인맞춤 식품", group: "trend" },
+      { id: "AI·투명 공급망 제조", group: "trend" },
+      { id: "단백질·장건강", group: "trend" },
+      { id: "클린라벨·책임소싱", group: "trend" },
+      { id: "식품 ESG·투명성", group: "trend" },
+      { id: "편의성·가성비", group: "trend" },
+      { id: "한국: 혼웰식·한그릇 건강식", group: "korea" },
+      { id: "한국: 저당·혈당관리", group: "korea" },
+      { id: "한국: 간편식 HMR·냉동 프리미엄", group: "korea" },
+      { id: "한국: 단백질·식이섬유·장건강", group: "korea" },
+      { id: "한국: AI 맞춤영양·푸드테크 제조", group: "korea" },
+      { id: "한국: K-푸드 수출·쌀가공", group: "korea" },
+      { id: "한국: 온라인 식품·D2C", group: "korea" },
+      { id: "한국: 고령친화식품·케어푸드", group: "korea" },
+      { id: "한국: 비주얼 디저트", group: "korea" },
+      { id: "한국: 제철 한식", group: "korea" },
+      { id: "한국: 영양표시·라벨 투명성", group: "korea" },
+      { id: "한국: 소용량·가성비·PB", group: "korea" }
+    ];
+    const links = [
+      ["AI 기반 식품 OEM/ODM 공장 매칭 플랫폼", "B2B 대량 발주"],
+      ["AI 기반 식품 OEM/ODM 공장 매칭 플랫폼", "B2C 소규모 제작/공동구매"],
+      ["AI 기반 식품 OEM/ODM 공장 매칭 플랫폼", "공장 역량 데이터베이스"],
+      ["AI 기반 식품 OEM/ODM 공장 매칭 플랫폼", "AI 매칭 로직"],
+      ["AI 기반 식품 OEM/ODM 공장 매칭 플랫폼", "견적/샘플 발주"],
+      ["기능성·개인맞춤 식품", "AI 기반 식품 OEM/ODM 공장 매칭 플랫폼"],
+      ["AI·투명 공급망 제조", "AI 기반 식품 OEM/ODM 공장 매칭 플랫폼"],
+      ["단백질·장건강", "기능성·개인맞춤 식품"],
+      ["클린라벨·책임소싱", "공장 역량 데이터베이스"],
+      ["식품 ESG·투명성", "공장 역량 데이터베이스"],
+      ["식품 ESG·투명성", "AI·투명 공급망 제조"],
+      ["식품 ESG·투명성", "클린라벨·책임소싱"],
+      ["편의성·가성비", "B2C 소규모 제작/공동구매"],
+      ["한국: 혼웰식·한그릇 건강식", "B2C 소규모 제작/공동구매"],
+      ["한국: 혼웰식·한그릇 건강식", "한국: 간편식 HMR·냉동 프리미엄"],
+      ["한국: 저당·혈당관리", "기능성·개인맞춤 식품"],
+      ["한국: 저당·혈당관리", "공장 역량 데이터베이스"],
+      ["한국: 간편식 HMR·냉동 프리미엄", "편의성·가성비"],
+      ["한국: 간편식 HMR·냉동 프리미엄", "B2C 소규모 제작/공동구매"],
+      ["한국: 단백질·식이섬유·장건강", "단백질·장건강"],
+      ["한국: AI 맞춤영양·푸드테크 제조", "AI·투명 공급망 제조"],
+      ["한국: AI 맞춤영양·푸드테크 제조", "AI 매칭 로직"],
+      ["한국: K-푸드 수출·쌀가공", "B2B 대량 발주"],
+      ["한국: 온라인 식품·D2C", "B2C 소규모 제작/공동구매"],
+      ["한국: 고령친화식품·케어푸드", "B2B 대량 발주"],
+      ["한국: 비주얼 디저트", "B2C 소규모 제작/공동구매"],
+      ["한국: 제철 한식", "한국: 혼웰식·한그릇 건강식"],
+      ["한국: 영양표시·라벨 투명성", "클린라벨·책임소싱"],
+      ["한국: 영양표시·라벨 투명성", "공장 역량 데이터베이스"],
+      ["한국: 소용량·가성비·PB", "편의성·가성비"],
+      ["공장 역량 데이터베이스", "AI 매칭 로직"],
+      ["AI 매칭 로직", "B2B 대량 발주"],
+      ["AI 매칭 로직", "B2C 소규모 제작/공동구매"],
+      ["견적/샘플 발주", "B2B 대량 발주"],
+      ["견적/샘플 발주", "B2C 소규모 제작/공동구매"]
+    ].map(([source, target]) => ({ source, target }));
+    const colors = { idea: "#2563eb", platform: "#16a34a", trend: "#f59e0b", korea: "#dc2626" };
+    const svg = document.getElementById("graph");
+    const width = svg.clientWidth;
+    const height = svg.clientHeight;
+    const center = { x: width / 2, y: height / 2 };
+    const placed = new Map();
+    nodes.forEach((node, i) => {
+      if (node.group === "idea") {
+        node.x = center.x;
+        node.y = center.y;
+      } else {
+        const angle = (Math.PI * 2 * i) / (nodes.length - 1);
+        const radius = node.group === "platform" ? Math.min(width, height) * 0.22 : node.group === "trend" ? Math.min(width, height) * 0.34 : Math.min(width, height) * 0.45;
+        node.x = center.x + Math.cos(angle) * radius;
+        node.y = center.y + Math.sin(angle) * radius;
+      }
+      placed.set(node.id, node);
+    });
+    const ns = "http://www.w3.org/2000/svg";
+    links.forEach(link => {
+      const s = placed.get(link.source);
+      const t = placed.get(link.target);
+      const line = document.createElementNS(ns, "line");
+      line.setAttribute("class", "link");
+      line.setAttribute("x1", s.x);
+      line.setAttribute("y1", s.y);
+      line.setAttribute("x2", t.x);
+      line.setAttribute("y2", t.y);
+      svg.appendChild(line);
+    });
+    nodes.forEach(node => {
+      const g = document.createElementNS(ns, "g");
+      g.setAttribute("class", "node");
+      const circle = document.createElementNS(ns, "circle");
+      circle.setAttribute("cx", node.x);
+      circle.setAttribute("cy", node.y);
+      circle.setAttribute("r", node.group === "idea" ? 28 : 18);
+      circle.setAttribute("fill", colors[node.group]);
+      const text = document.createElementNS(ns, "text");
+      text.setAttribute("x", node.x + 24);
+      text.setAttribute("y", node.y + 4);
+      text.textContent = node.id;
+      g.appendChild(circle);
+      g.appendChild(text);
+      svg.appendChild(g);
+    });
+  </script>
+</body>
+</html>

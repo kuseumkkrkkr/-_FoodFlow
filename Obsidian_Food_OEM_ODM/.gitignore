@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local environment and secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Runtime data
+*.log
+*.db
+*.sqlite
+*.sqlite3
+app_cbt/data/
+app_cbt/generated/
+
+# Flutter and Dart
+app_flutter/.dart_tool/
+app_flutter/build/
+app_flutter/.pub-cache/
+app_flutter/.flutter-plugins
+
+# IDE and OS noise
+.DS_Store
+Thumbs.db

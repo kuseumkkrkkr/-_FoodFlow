@@ -1,0 +1,224 @@
+{
+  "main": {
+    "id": "5838f9b5fd978e4d",
+    "type": "split",
+    "children": [
+      {
+        "id": "529182f8cf3922e3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b2e6fc880d9279fa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "korea_trends/00_Korea_Trend_Map.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "00_Korea_Trend_Map"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3a70a82158c26235",
+    "type": "split",
+    "children": [
+      {
+        "id": "46ecf0a5ca768f9e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f5fc3f17f2eed496",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "9981e9c3c403516a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#senior_food",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "45d1ef7cdb6028ae",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "c8a4a8d6305cc88b",
+    "type": "split",
+    "children": [
+      {
+        "id": "c0bed328811fd6f6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dd87ccc6cd537700",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "백링크"
+            }
+          },
+          {
+            "id": "595782cb03759a2b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "나가는 링크"
+            }
+          },
+          {
+            "id": "b7659740df7993ae",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "5ef9a93a00b89f44",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
+          },
+          {
+            "id": "6da632ed0e0f3d19",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
+  "active": "b2e6fc880d9279fa",
+  "lastOpenFiles": [
+    "app_cbt/generated/00e5cc47-c8e3-4ca1-bd2f-52186e941595_product_plan.pdf",
+    "app_cbt/data/cbt_app.db-journal",
+    "app_flutter/build/cf67e443",
+    "app_flutter/build/test_cache/build/eb287658",
+    "app_cbt/generated/88009f7a-af7a-41fd-acf8-d795be244c22_product_plan.pdf",
+    "app_cbt/generated/8486a98f-4651-4c18-9934-9f374527ea55_product_plan.pdf",
+    "app_cbt/generated/cc0b5e41-20b0-4139-8561-a2101a4ab66c_product_plan.pdf",
+    "app_flutter/build/web/assets/shaders/ink_sparkle.frag.spirv",
+    "app_flutter/build/web/881a8ff8",
+    "app_flutter/build/test_cache/build/30a81724",
+    "app_flutter/build/unit_test_assets/691eda7",
+    "app/App_Build_Risk_Review.md",
+    "app/First_App_Plan.md",
+    "platform/Regulatory_Screening_System.md",
+    "database/Korea_OEM_ODM_Initial_DB.md",
+    "mvp/MVP_Start_Casing.md",
+    "platform/Vibe_Cooking_Digital_Twin.md",
+    "30_QA_Command_Center.md",
+    "20_Trend_Map.md",
+    "korea_trends/Korea_Source_Factcheck.md",
+    "korea_trends/Korea_Global_Comparison.md",
+    "korea_trends/12_Small_Pack_Value_PB.md",
+    "korea_trends/11_Label_Transparency_Regulation.md",
+    "korea_trends/10_Seasonal_Korean_Food.md",
+    "korea_trends/09_Visual_Dessert_Pistachio_Dubai_Cookie.md",
+    "korea_trends/08_Senior_Care_Food.md",
+    "korea_trends/07_Online_D2C_Quickcommerce.md",
+    "korea_trends/06_K_Food_Export_Rice_Processed.md",
+    "korea_trends/05_AI_Personalized_Nutrition_Foodtech.md",
+    "korea_trends/04_Protein_Fiber_Gut_Health_KR.md",
+    "korea_trends/03_HMR_Frozen_Premium.md",
+    "korea_trends/02_Low_Sugar_Blood_Glucose.md",
+    "korea_trends/01_Honwell_One_Bowl_Healthy_Meal.md",
+    "korea_trends/00_Korea_Trend_Map.md",
+    "trends/Food_ESG_Transparency.md",
+    "10_Core_Idea.md"
+  ]
+}

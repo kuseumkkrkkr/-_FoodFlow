@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Food OEM/ODM CBT</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>OEM/ODM CBT</strong>
+        <span>제품 요청 · 규제 · 공장 매칭</span>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-view="workspace">요청 워크룸</button>
+        <button class="nav-btn" data-view="admin">공장 DB</button>
+      </nav>
+      <section class="health" id="healthBox">서버 확인 중</section>
+    </aside>
+
+    <main class="app-shell">
+      <section class="topbar">
+        <div>
+          <h1>제품 만들기 요청</h1>
+          <p>자연어 입력에서 사양화, 규제 플래그, 공장 후보, 샘플 발주안까지 생성합니다.</p>
+        </div>
+        <button id="cleanupBtn" class="ghost danger">더미 삭제</button>
+      </section>
+
+      <section id="workspaceView" class="view grid">
+        <div class="panel input-panel">
+          <h2>바이브 쿠킹 조합</h2>
+          <form id="vibeForm">
+            <label>
+              기본 아이디어
+              <textarea name="base_idea" rows="3">저당 고단백 그래놀라바를 만들고 싶다.</textarea>
+            </label>
+            <div class="two-col">
+              <label>
+                타깃
+                <select name="target_customer" id="vibeTarget"></select>
+              </label>
+              <label>
+                섭취 장면
+                <select name="eating_scene" id="vibeScene"></select>
+              </label>
+            </div>
+            <div class="two-col">
+              <label>
+                식감
+                <select name="texture" id="vibeTexture"></select>
+              </label>
+              <label>
+                제조 방향
+                <select name="process_mode" id="vibeProcess"></select>
+              </label>
+            </div>
+            <label>
+              핵심 원료
+              <input name="key_ingredients" value="귀리,분리대두단백,알룰로스" />
+            </label>
+            <label>
+              제외/감량 원료
+              <input name="avoid_ingredients" value="설탕,물엿" />
+            </label>
+            <div class="vibe-actions">
+              <button type="button" id="composeBtn" class="ghost">요청서에 반영</button>
+              <button type="button" id="composeRunBtn" class="primary">조합 후 전체 실행</button>
+            </div>
+          </form>
+          <div id="vibePreview" class="vibe-preview empty-small">조합 결과가 여기에 표시됩니다.</div>
+
+          <h2>발주 요청서</h2>
+          <form id="requestForm">
+            <label>
+              제품군
+              <select name="product_case">
+                <option value="health_snack">건강간식</option>
+                <option value="powder_stick">분말스틱</option>
+                <option value="sauce">소스</option>
+              </select>
+            </label>
+            <label>
+              만들고 싶은 제품
+              <textarea name="raw_prompt" rows="5">저당 고단백 그래놀라바를 온라인 공동구매로 1,000개 테스트 생산하고 싶다. 개별포장과 단백질 강조가 필요하다.</textarea>
+            </label>
+            <div class="two-col">
+              <label>
+                판매 방식
+                <select name="sales_type">
+                  <option>D2C</option>
+                  <option>공동구매</option>
+                  <option>프랜차이즈</option>
+                  <option>PB</option>
+                  <option>B2B</option>
+                </select>
+              </label>
+              <label>
+                목표 수량
+                <input name="target_qty_text" value="1,000개" />
+              </label>
+            </div>
+            <div class="two-col">
+              <label>
+                포장
+                <select name="package_type">
+                  <option>개별포장</option>
+                  <option>스틱</option>
+                  <option>파우치</option>
+                  <option>병</option>
+                </select>
+              </label>
+              <label>
+                강조 문구
+                <input name="claim_list" value="저당,고단백" />
+              </label>
+            </div>
+            <label>
+              목표 가격/원가
+              <input name="target_price" placeholder="예: 소비자가 2,900원, 제조원가 1,000원 이하" />
+            </label>
+            <label class="checkline">
+              <input type="checkbox" name="is_dummy" checked />
+              더미 검증 데이터로 생성
+            </label>
+            <button type="submit" class="primary">요청 생성 및 전체 실행</button>
+          </form>
+
+          <div class="list-head">
+            <h2>요청 목록</h2>
+            <button id="refreshBtn" class="ghost">새로고침</button>
+          </div>
+          <div id="requestList" class="request-list"></div>
+        </div>
+
+        <div class="panel detail-panel">
+          <div class="empty" id="emptyState">요청을 생성하거나 목록에서 선택하세요.</div>
+          <div id="detailView" class="hidden">
+            <div class="detail-head">
+              <div>
+                <span id="statusBadge" class="badge">draft</span>
+                <h2 id="detailTitle">요청 상세</h2>
+                <p id="detailMeta"></p>
+              </div>
+              <button id="rerunBtn" class="ghost">전체 재실행</button>
+            </div>
+
+            <div class="tabs">
+              <button class="tab active" data-tab="spec">사양</button>
+              <button class="tab" data-tab="agent">에이전트</button>
+              <button class="tab" data-tab="risk">규제</button>
+              <button class="tab" data-tab="matches">공장</button>
+              <button class="tab" data-tab="po">발주</button>
+              <button class="tab" data-tab="docs">문서</button>
+            </div>
+
+            <section class="tab-panel" id="tab-spec"></section>
+            <section class="tab-panel hidden" id="tab-agent"></section>
+            <section class="tab-panel hidden" id="tab-risk"></section>
+            <section class="tab-panel hidden" id="tab-matches"></section>
+            <section class="tab-panel hidden" id="tab-po"></section>
+            <section class="tab-panel hidden" id="tab-docs"></section>
+          </div>
+        </div>
+
+        <div class="panel action-panel">
+          <h2>CBT 체크</h2>
+          <div id="summaryBox" class="summary"></div>
+
+          <h2>원가 재계산</h2>
+          <form id="costForm">
+            <label>원료비 <input name="ingredient_cost" type="number" value="450" /></label>
+            <label>포장비 <input name="packaging_cost" type="number" value="120" /></label>
+            <label>제조비 <input name="manufacturing_fee" type="number" value="250" /></label>
+            <label>샘플비 <input name="sample_fee" type="number" value="300000" /></label>
+            <label>시험비 <input name="test_fee" type="number" value="250000" /></label>
+            <button type="submit" class="primary">계산</button>
+          </form>
+          <div id="costResult" class="cost-result"></div>
+        </div>
+      </section>
+
+      <section id="adminView" class="view hidden admin-grid">
+        <div class="panel">
+          <div class="list-head">
+            <h2>공장 검색</h2>
+            <button id="factoryRefreshBtn" class="ghost">조회</button>
+          </div>
+          <input id="factoryQuery" placeholder="소스, 분말, HACCP, 회사명" />
+          <div id="factoryList" class="factory-list"></div>
+        </div>
+        <div class="panel">
+          <h2>공장 수동 등록</h2>
+          <form id="factoryForm">
+            <label>회사명 <input name="company_name" required /></label>
+            <label>카테고리 <input name="primary_category" required /></label>
+            <label>키워드 <textarea name="product_keywords" rows="3" required></textarea></label>
+            <label>인증 <input name="certification_signal" value="HACCP" /></label>
+            <label>지역 <input name="location_signal" /></label>
+            <label>출처 URL <input name="source_url" /></label>
+            <button type="submit" class="primary">등록</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
